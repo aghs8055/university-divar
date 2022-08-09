@@ -1,0 +1,8 @@
+{% extends 'courses/base.html' %}
+{% block title %}Panel{% endblock %}
+{% block content %}
+    {% if request.user.is_staff %}
+        <a class="btn btn-primary" href="{% url 'courses:add-course' %}" role="button" id="make_new_course" href="{% url 'courses:add-course' %}">Add new Course</a><br><br>
+    {% endif %}
+    <a class="btn btn-primary" role="button" id="courses" href="{% url 'courses:courses' %}">Courses</a>
+{% endblock %}

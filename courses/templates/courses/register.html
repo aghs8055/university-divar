@@ -1,0 +1,16 @@
+{% extends 'courses/base.html' %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+    {% if error_messages %}
+        <ul>
+        {% for error_message in error_messages %}
+            <li style="color: red">error_message</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'courses:signup' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Signup">
+    </form>
+{% endblock %}

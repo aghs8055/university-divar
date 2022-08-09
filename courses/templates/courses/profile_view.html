@@ -1,0 +1,16 @@
+{% extends 'courses/base.html' %}
+{% block title %}Profile View{% endblock %}
+{% block content %}
+    {% if request.user.profile.image %}
+        <p><img src="{{ request.user.profile.image.url }}" width="250" height="250" class="rounded mx-auto d-block"></p>
+    {% endif %}
+    {% if request.user.profile.bio %}
+        Bio: {{ request.user.profile.bio | safe }}
+    {% endif %}
+    <p>First name: {{ request.user.first_name }}</p>
+    <p>Last name: {{ request.user.last_name }}</p>
+    <p>Gender: {{ request.user.profile.get_gender_display }}</p>
+    <p>User Type: {{ request.user.profile.get_user_type_display }}</p>
+    <p>Username: {{ request.user.username }}</p>
+    <a class="btn btn-primary" role="button" href="{% url 'courses:profile-settings' request.user.id %}">Edit User</a>
+{% endblock %}

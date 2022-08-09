@@ -1,0 +1,31 @@
+{% extends 'courses/base.html' %}
+{% block title %}Courses{% endblock %}
+{% block content %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Department</th>
+          <th scope="col">Days</th>
+          <th scope="col">Time</th>
+          <th scope="col">Teacher Name</th>
+        </tr>
+      </thead>
+      <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.department }}</td>
+                    <td>
+                        {{ course.get_first_day_display }}
+                        {% if course.secondday %}
+                            and {{ course.get_second_day_display }}
+                        {% endif %}
+                    </td>
+                    <td>{{ course.start_time|date:"h:i" }} to {{ course.end_time|date:"h:i" }}</td>
+                    <td>{{ course.teacher_name }}</td>
+                </tr>
+            {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}
